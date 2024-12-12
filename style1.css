@@ -1,0 +1,17 @@
+a {
+  display: block;
+  width: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10%;
+  margin: 10%;
+  border-radius: 25%;
+  background-color: #deb887;
+  align-items: center;
+  color: #000000d3;
+  text-decoration: none;
+}
+a:hover{
+  background-color: transparent;
+  border: 20% solid rgb(20, 20, 20);
+  color: burlywood;
+}
