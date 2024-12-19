@@ -8,6 +8,18 @@
 
 <script type='text/javascript' src='//pl25270855.profitablecpmrate.com/fd/20/10/fd20108ddf4014c7acbd548996e07810.js'></script>
 
+<style>
+  body {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .timer {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: burlywood;
+  }
+</style>
+
 </head>
 
 <body background="img/background.webp">
@@ -32,6 +44,58 @@
 
 </font></p>
 
+
+
+
+
+
+
+
+
+
+<h1><font size="+8" color="burlywood">FALTAN:</font></h1>
+  <div class="timer" id="countdown" color="burlywood">
+    <font size="+10" color="burlywood">
+    00 Días 00:00:00
+  </font>
+  </div>
+
+  <script>
+
+    const targetDate = new Date('2024-12-25T23:59:59').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').textContent =
+          `${days} Días ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      } else {
+        document.getElementById('countdown').textContent = "¡El tiempo ha llegado!";
+      }
+    }
+
+
+    setInterval(updateCountdown, 1000);
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="cuentaregresiva"></div>
+
 	<p align="center"><font size="+7" color="burlywood"><a href="credits (2).html">Mas información...</a></font></p>
 
 
@@ -50,6 +114,10 @@
 
 
 	
-	
+	<script src="simplyCountdown.min.js"></script>
+  <script src="countdown.js"></script>
+
+  
 </body>
 </html>
+
