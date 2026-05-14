@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Patch</title>
+
+    <!-- Script Publicitario -->
+    <script type='text/javascript' src='//pl25270855.profitablecpmrate.com/fd/20/10/fd20108ddf4014c7acbd548996e07810.js'></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. CONFIGURACIÓN GENERAL Y FONDO
+           ========================================= */
+        body {
+            font-family: 'Exo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('img/background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(30%) blur(6px);
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        /* =========================================
+           2. TÍTULO "REY DE PSP" (EFECTO ORO)
+           ========================================= */
+        .titulo-borde-rgb {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: black;
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(0 0 2px rgba(225, 168, 0, 0.4));
+        }
+
+        .titulo-borde-rgb::before {
+            content: "EL PARCHE REY DE PSP"; 
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            -webkit-text-stroke: 8px transparent; 
+            background: linear-gradient(90deg, #d4af37 0%, #f9f295 20%, #e6b980 40%, #e1a800 60%, #f9f295 80%, #d4af37 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: flujo-oro 3s linear infinite;
+        }
+
+        @keyframes flujo-oro {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* =========================================
+           3. SECCIONES Y CONTENEDORES
+           ========================================= */
+        .seccion-descarga-home {
+            margin: 30px auto 60px auto; 
+            padding: 40px 20px; 
+            background: rgba(10, 10, 10, 0.85); 
+            border-radius: 20px;
+            max-width: 800px;
+            text-align: center;
+            border: 1px solid #333;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+
+        .seccion-descarga-home h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(255,215,0,0.3);
+        }
+
+        /* =========================================
+           NUEVO: BOTÓN SPOTIFY
+           ========================================= */
+        .seccion-spotify {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn-spotify {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #1DB954;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+        }
+
+        .btn-spotify:hover {
+            background-color: #1ed760;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(29, 185, 84, 0.5);
+        }
+
+        .spotify-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            animation: pulse-spotify 2s infinite;
+        }
+
+        @keyframes pulse-spotify {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* =========================================
+           4. BOTONES (RGB Y CAFÉ)
+           ========================================= */
+        .contenedor-boton-rgb {
+            position: relative;
+            display: inline-block;
+            padding: 3px; 
+            background: linear-gradient(90deg, #ff0000, #ff7700, #ffeb00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff0000);
+            background-size: 400%;
+            border-radius: 12px;
+            animation: borde-veloz 3s linear infinite;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .btn-animado-colores {
+            display: inline-block;
+            padding: 18px 45px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            border-radius: 10px;
+            background: linear-gradient(-45deg, #111, #333, #111, #222);
+            background-size: 400% 400%;
+            animation: gradiente-suave 8s ease infinite;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .contenedor-boton-rgb:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .contenedor-boton-rgb:hover .btn-animado-colores {
+            background: #ecb427;
+            color: #000;
+        }
+
+        /* Botón Café */
+        .contenedor-boton-cafe {
+            display: inline-block;
+            padding: 2px;
+            background: linear-gradient(90deg, #6f4e37, #a67b5b, #ecb176, #6f4e37);
+            background-size: 300%;
+            border-radius: 50px;
+            animation: borde-veloz 4s linear infinite;
+        }
+
+        .btn-cafe {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1a1a1a;
+            color: #ecb176;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .btn-cafe:hover {
+            background: #ecb176;
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+
+        /* =========================================
+           5. CRÉDITOS ANIMADOS
+           ========================================= */
+        .ventana-creditos {
+            position: relative;
+            height: 120px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.5);
+            margin-top: 50px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .ventana-creditos:hover {
+            background: rgba(225, 168, 0, 0.1);
+            border-color: #ffd700;
+        }
+
+        .creditos-scroll {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            animation: subir-creditos 12s linear infinite;
+        }
+
+        @keyframes subir-creditos {
+            0% { top: 120px; }
+            100% { top: -200px; }
+        }
+
+        /* Keyframes Compartidos */
+        @keyframes borde-veloz { 0% { background-position: 0%; } 100% { background-position: 400%; } }
+        @keyframes gradiente-suave { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        th a { color: white; text-decoration: none; }
+        th a:hover { color: #E1A800; }
+
+        .seccion-spotify {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.btn-spotify {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+    font-family: 'Exo', sans-serif;
+}
+
+.btn-spotify:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+}
+
+.spotify-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Contenedor del reproductor */
+#contenedor-reproductor {
+    display: none; /* Totalmente oculto al inicio */
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+    </style>
+</head>
+
+<body>
+
+<p align="center">
+    <img src="img/IMG-20250910-WA0005.jpg.jpeg" 
+         alt="Eagle Patch Logo" 
+         style="width: 40%; max-width: 280px; height: auto; mix-blend-mode: screen; filter: brightness(1.2); display: block; margin: 40px auto 0 auto;">
+</p>
+
+<p align="center">
+    <span class="titulo-borde-rgb">
+        EL PARCHE REY DE PSP
+    </span>
+</p>
+
+<!-- NOVEDADES -->
+<section style="background: rgba(26, 26, 26, 0.8); padding: 20px; border-radius: 10px; margin: 40px 20px; border-left: 5px solid #ffa200; overflow: hidden;">
+    <h3 style="color: #ffd700; text-align: left; margin-top: 0;">📰 Novedades del Parche</h3>
+    
+    <div style="position: relative; width: 100%; max-width: 800px; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        <div id="slider" style="display: flex; transition: transform 0.5s ease-in-out;">
+            <div style="width: 100%; height: 350px; flex-shrink: 0;">
+                <video autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="img/jugabilidad.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+            </div>
+            <img src="img/new/2.webp" style="width: 100%; height: 350px; object-fit: cover; flex-shrink: 0;" alt="NUEVOS ESTADIOS">
+            <img src="img/new/3.webp" style="width: 100%; height: 350px; object-fit: cover; flex-shrink: 0;" alt="NUEVOS NARRADORES">
+            <img src="img/new/4.webp" style="width: 100%; height: 350px; object-fit: cover; flex-shrink: 0;" alt="NUEVOS MENUS">
+            <img src="img/new/5.webp" style="width: 100%; height: 350px; object-fit: cover; flex-shrink: 0;" alt="FACES REALISTAS">
+        </div>
+
+        <div style="position: absolute; bottom: 0; background: rgba(0,0,0,0.7); color: white; width: 100%; padding: 10px; text-align: center; font-size: 0.9rem;">
+            <span id="slider-text">Cargando novedades...</span>
+        </div>
+    </div>
+</section>
+
+<!-- BOTÓN SPOTIFY (Entre Novedades y Descarga) -->
+<div class="seccion-spotify">
+    <!-- Botón con la apariencia original que pediste -->
+    <button class="btn-spotify" id="botonSpotify" onclick="reproducirSpotify()">
+        <svg class="spotify-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.494 17.308c-.217.355-.678.468-1.032.252-2.86-1.748-6.46-2.143-10.702-1.176-.405.093-.812-.162-.905-.567-.093-.404.162-.811.566-.905 4.646-1.062 8.624-.616 11.82 1.337.354.217.467.678.253 1.059zm1.464-3.26c-.274.444-.852.585-1.296.312-3.274-2.012-8.266-2.597-12.138-1.422-.5.152-1.026-.132-1.178-.632-.152-.5.132-1.026.633-1.178 4.417-1.34 9.914-.683 13.667 1.624.444.274.585.852.312 1.296zm.126-3.412c-3.928-2.333-10.414-2.55-14.185-1.405-.603.183-1.242-.163-1.425-.766-.183-.603.163-1.242.766-1.425 4.34-1.318 11.5-1.066 16.035 1.625.542.322.72 1.024.398 1.566-.322.542-1.024.72-1.566.398z"/>
+        </svg>
+        <span id="textoBoton">ESCUCHA NUESTRO SOUNDTRACK</span>
+    </button>
+
+    <div id="contenedor-reproductor" style="display:none; margin-top: 20px;">
+        <iframe 
+            id="spotifyIframe"
+            src="" 
+            width="100%" 
+            height="152" 
+            frameBorder="0" 
+            allow="encrypted-media; fullscreen; picture-in-picture" 
+            style="border-radius:12px; max-width:700px;">
+        </iframe>
+    </div>
+</div>
+
+<!-- DESCARGA -->
+<section class="seccion-descarga-home">
+    <h3>📂 DESCARGA EAGLE PATCH</h3>
+    <p>¿Buscas el parche de la Eurocopa, Liga MX y MLS, Copa América o la versión más reciente de Eagle Patch? Tenemos todas las versiones guardadas para ti.</p>
+    
+    <div class="contenedor-boton-rgb">
+        <a href="catalago.html" class="btn-animado-colores">
+            Ver Todas Las Versiones
+        </a>
+    </div>
+</section>
+
+<div class="seccion-donacion" style="text-align: center; margin: 40px 0;">
+    <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">☕ Si valoras mi trabajo, puedes apoyarme aquí:</p>
+    <div class="contenedor-boton-cafe">
+        <a href="https://ko-fi.com/eaglepatchpsp" target="_blank" class="btn-cafe">
+            INVÍTAME UN CAFÉ
+        </a>
+    </div>
+</div>
+
+<a href="credits.html" style="text-decoration: none; color: inherit; display: block;">
+    <div class="ventana-creditos">
+        <p style="text-align: center; color: #E1A800; font-weight: bold; margin: 0; padding: 5px 0; font-size: 0.8rem; position: absolute; width: 100%; z-index: 2; background: rgba(20,20,20,0.9); border-bottom: 1px solid #333;">
+            COLABORADORES (Click para ver todos)
+        </p>
+        <div class="creditos-scroll">
+            <p>Ramirez 15</p>
+            <p>Game Over</p>
+            <p>Yunier PB</p>
+            <p>HDX Games</p>
+            <p>Frank SJ</p>
+            <p>Gustavo Hirts</p>
+        </div>
+    </div>
+</a>
+
+<script>
+    const slider = document.getElementById('slider');
+    const sliderText = document.getElementById('slider-text');
+    const totalSlides = 5;
+    let currentIndex = 0;
+
+    const newsTexts = [
+        "DISFRUTA DE UNA NUEVA Y MEJORADA JUGABILIDAD",
+        "JUEGA EN ESTADIOS COMO EL SANTIAGO BERNABEU, SIGNAL IDUNA PARK, ESTADIO AZTECA Y DE MAS SEDES NUEVAS",
+        "PROXIMAMENTE NUEVAS NARRACIONES CON ENRRIQUE BERMUDEZ Y RICARDO PELAEZ EN LA VERSION MAS RECIENTE",
+        "NUEVAS INTERFACES EN TODOS LOS MODOS DE JUEGO",
+        "FACES MUCHISIMO MAS REALISTAS AL ESTILO PC",
+    ];
+
+    function moveSlider() {
+        currentIndex++;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        sliderText.textContent = newsTexts[currentIndex];
+    }
+
+    setInterval(moveSlider, 4000);
+    sliderText.textContent = newsTexts[0];
+
+function reproducirSpotify() {
+    const contenedor = document.getElementById('contenedor-reproductor');
+    const iframe = document.getElementById('spotifyIframe');
+    const texto = document.getElementById('textoBoton');
+    
+    // AQUÍ ES DONDE COLOCAS TU LINK
+    const linkEmbed = "https://open.spotify.com/embed/track/4DNDb6OMyORiSisBMhh5op?utm_source=generator"; 
+
+    if (contenedor.style.display === 'none') {
+        iframe.src = linkEmbed;
+        contenedor.style.display = 'block';
+        texto.innerText = "CERRAR REPRODUCTOR";
+    } else {
+        contenedor.style.display = 'none';
+        iframe.src = ""; // Esto detiene la música al cerrar
+        texto.innerText = "ESCUCHA NUESTRO SOUNDTRACK";
+    }
+}
+</script>
+
+</body>
+</html>
