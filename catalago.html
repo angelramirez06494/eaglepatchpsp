@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Patch - Catálogo Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. ESTILOS GENERALES
+           ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Exo', sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #bg-dinamico {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(25%) blur(12px);
+            transition: background-image 1s ease-in-out;
+        }
+
+        .main-container {
+            width: 95%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* =========================================
+           2. SLIDER: IMAGEN Y FLECHAS
+           ========================================= */
+        .slider-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .img-frame {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border: 3px solid;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            background-color: #111;
+        }
+
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border: 2px solid;
+            color: inherit;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            outline: none;
+        }
+
+        /* =========================================
+           3. PANEL DE INFO Y BOTÓN DE DESCARGA
+           ========================================= */
+        .info-panel {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 6px solid;
+            width: 100%;
+            max-width: 700px;
+            backdrop-filter: blur(8px);
+        }
+
+        .download-btn {
+            text-decoration: none;
+            padding: 18px 50px;
+            border: 2px solid;
+            border-radius: 12px;
+            font-family: 'Exo', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: inherit;
+            background: #1a1a1a;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        /* AJUSTES PARA CELULAR */
+        @media (max-width: 768px) {
+            .slider-wrapper { gap: 10px; }
+            .nav-btn { width: 45px; height: 45px; font-size: 1.1rem; }
+            .info-panel h1 { font-size: 1.5rem; }
+            .download-btn { width: 100%; padding: 15px; font-size: 1rem; }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div id="bg-dinamico"></div>
+
+    <div class="main-container">
+        
+        <div class="slider-wrapper">
+            <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+            
+            <div class="img-frame" id="main-frame">
+                <img id="main-img" src="" alt="Cargando Parche...">
+            </div>
+
+            <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="info-panel" id="main-info">
+            <h1 id="patch-title">CARGANDO...</h1>
+            <p id="patch-desc" style="color: #ccc; margin: 15px 0; line-height: 1.6;"></p>
+            <a href="#" id="patch-link" class="download-btn">DESCARGAR ESTA VERSIÓN</a>
+        </div>
+
+    </div>
+
+    <script>
+        const versions = [
+            {
+                title: "EAGLE PATCH 2025",
+                desc: "La version de eagle patch mas reciente hasta el momento con todo actualizado a la temporada 2025",
+                img: "img/EA26.webp",
+                bg: "img/background1.webp",
+                link: "eaglepatch.html",
+                color: "#ff4444"
+            },
+            {
+                title: "COPA AMÉRICA 2024",
+                desc: "Toda la pasión del continente con las selecciones de CONMEBOL y CONCACAF totalmente licenciadas y actualizadas.",
+                img: "img/CA24.webp",
+                bg: "img/background2.webp",
+                link: "copaamerica2024.html",
+                color: "#00ff88"
+            },
+            {
+                title: "UEFA EURO 2024",
+                desc: "Siente la emoción del fútbol europeo con estadios reales, marcadores oficiales y las 24 selecciones de la Euro.",
+                img: "img/EURO.webp",
+                bg: "img/background3.webp",
+                link: "euro2024.html",
+                color: "#00aaff"
+            },
+            {
+                title: "LIGA MX Y MLS (RETRO)",
+                desc: "La mejor recopilación de equipos de la Liga MX y MLS con sus uniformes clásicos y plantillas 100% reales.",
+                img: "img/MXYMLS.webp",
+                bg: "img/background.webp",
+                link: "ligamx.html",
+                color: "#ffd700"
+            }
+        ];
+
+        let currentIdx = 0;
+
+        function updateUI() {
+            const v = versions[currentIdx];
+            const img = document.getElementById('main-img');
+            const frame = document.getElementById('main-frame');
+            const info = document.getElementById('main-info');
+            const btnLink = document.getElementById('patch-link');
+            const btnsNav = [document.getElementById('prev-btn'), document.getElementById('next-btn')];
+
+            img.style.opacity = "0";
+
+            setTimeout(() => {
+                img.src = v.img;
+                document.getElementById('bg-dinamico').style.backgroundImage = `url('${v.bg}')`;
+                document.getElementById('patch-title').innerText = v.title;
+                document.getElementById('patch-desc').innerText = v.desc;
+                btnLink.href = v.link;
+
+                // Colores dinámicos
+                document.getElementById('patch-title').style.color = v.color;
+                frame.style.borderColor = v.color;
+                frame.style.boxShadow = `0 0 30px ${v.color}55`;
+                info.style.borderLeftColor = v.color;
+                
+                // Aplicar comportamiento a todos los botones (Nav + Descarga)
+                const todosLosBotones = [...btnsNav, btnLink];
+                
+                todosLosBotones.forEach(btn => {
+                    btn.style.color = v.color;
+                    btn.style.borderColor = v.color;
+                    
+                    // Efectos de Hover dinámicos mediante JS
+                    btn.onmouseenter = function() {
+                        this.style.backgroundColor = v.color;
+                        this.style.color = "#000";
+                        this.style.boxShadow = `0 0 30px ${v.color}`;
+                        this.style.transform = "scale(1.05)";
+                    };
+                    btn.onmouseleave = function() {
+                        this.style.backgroundColor = this.classList.contains('download-btn') ? "#1a1a1a" : "rgba(0,0,0,0.6)";
+                        this.style.color = v.color;
+                        this.style.boxShadow = "none";
+                        this.style.transform = "scale(1)";
+                    };
+                });
+
+                img.style.opacity = "1";
+            }, 300);
+        }
+
+        function changeSlide(n) {
+            currentIdx = (currentIdx + n + versions.length) % versions.length;
+            updateUI();
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
