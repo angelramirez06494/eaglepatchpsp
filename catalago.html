@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eagle Patch - Catálogo Oficial</title>
+
+        <script>
+        (function() {
+            var ref = document.referrer;
+            // Si el usuario viene completamente vacío (escribió la URL) o no viene desde tu dominio/index
+            if (!ref || (ref.indexOf("theeaglepatch.com") === -1 && ref.indexOf("index.html") === -1)) {
+                window.location.href = "https://theeaglepatch.com/";
+            }
+        })();
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
