@@ -4,6 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Eagle Patch - Descargas Oficiales</title>
+
+    <script>
+    (function() {
+        var ref = document.referrer;
+        // Si el usuario viene vacío o no viene desde catalago.html, lo mandamos al inicio o al catálogo
+        if (!ref || ref.indexOf("catalago.html") === -1) {
+            window.location.href = "https://theeaglepatch.com/"; 
+            // O si prefieres mandarlo al catálogo directamente: window.location.href = "catalago.html";
+        }
+    })();
+</script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
