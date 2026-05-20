@@ -7,11 +7,22 @@
 
 <script>
     (function() {
-        var ref = document.referrer;
-        // Si el usuario viene vacío o no viene desde catalago.html, lo mandamos al inicio o al catálogo
-        if (!ref || ref.indexOf("catalago.html") === -1) {
-            window.location.href = "https://theeaglepatch.com/"; 
-            // O si prefieres mandarlo al catálogo directamente: window.location.href = "catalago.html";
+        var ref = document.referrer.toLowerCase();
+        
+        // 1. Si estás probando en tu computadora (local), te deja pasar para que puedas editar tranquilo
+        if (window.location.protocol === "file:") {
+            return; 
+        }
+
+        // 2. Si no hay referrer (escribieron la URL directa) 
+        // O si el referrer NO contiene tu dominio ni los archivos clave, se activa el rebote
+        if (!ref || (
+            ref.indexOf("theeaglepatch.com") === -1 && 
+            ref.indexOf("catalago.html") === -1 && 
+            ref.indexOf("index.html") === -1
+        )) {
+            // Te manda a la principal si intentan burlar la seguridad
+            window.location.href = "https://theeaglepatch.com/";
         }
     })();
 </script>
