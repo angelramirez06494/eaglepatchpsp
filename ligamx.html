@@ -5,27 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Eagle Patch - Descargas Oficiales</title>
 
-<script>
-    (function() {
-        var ref = document.referrer.toLowerCase();
-        
-        // 1. Si estás probando en tu computadora (local), te deja pasar para que puedas editar tranquilo
-        if (window.location.protocol === "file:") {
-            return; 
-        }
-
-        // 2. Si no hay referrer (escribieron la URL directa) 
-        // O si el referrer NO contiene tu dominio ni los archivos clave, se activa el rebote
-        if (!ref || (
-            ref.indexOf("theeaglepatch.com") === -1 && 
-            ref.indexOf("catalago.html") === -1 && 
-            ref.indexOf("index.html") === -1
-        )) {
-            // Te manda a la principal si intentan burlar la seguridad
-            window.location.href = "https://theeaglepatch.com/";
-        }
-    })();
-</script>
     
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
     <style>
