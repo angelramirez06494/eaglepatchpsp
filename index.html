@@ -78,7 +78,7 @@
            3. SECCIONES Y CONTENEDORES
            ========================================= */
         .seccion-descarga-home {
-            margin: 30px auto 60px auto; 
+            margin: 30px auto 40px auto; 
             padding: 40px 20px; 
             background: rgba(10, 10, 10, 0.85); 
             border-radius: 20px;
@@ -96,11 +96,11 @@
         }
 
         /* =========================================
-           NUEVO: BOTÓN SPOTIFY
+           SECCIÓN SPOTIFY
            ========================================= */
         .seccion-spotify {
             text-align: center;
-            margin: 20px 0;
+            margin: 30px 0;
         }
 
         .btn-spotify {
@@ -109,13 +109,15 @@
             gap: 12px;
             background-color: #1DB954;
             color: white;
-            text-decoration: none;
+            border: none;
             padding: 14px 30px;
             border-radius: 50px;
             font-weight: bold;
             font-size: 1.1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+            font-family: 'Exo', sans-serif;
         }
 
         .btn-spotify:hover {
@@ -137,8 +139,15 @@
             100% { transform: scale(1); }
         }
 
+        #contenedor-reproductor {
+            display: none;
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
         /* =========================================
-           4. BOTONES (RGB Y CAFÉ)
+           4. BOTONES (RGB, EDITOR Y CAFÉ)
            ========================================= */
         .contenedor-boton-rgb {
             position: relative;
@@ -175,6 +184,58 @@
 
         .contenedor-boton-rgb:hover .btn-animado-colores {
             background: #ecb427;
+            color: #000;
+        }
+
+        /* Botón Herramientas de Editor */
+        .seccion-editor {
+            margin: 30px auto;
+            padding: 25px 20px;
+            background: rgba(15, 15, 20, 0.85);
+            border-radius: 15px;
+            max-width: 800px;
+            text-align: center;
+            border: 1px solid #2a2a3a;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .seccion-editor p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .contenedor-boton-editor {
+            display: inline-block;
+            padding: 2px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff, #00c6ff);
+            background-size: 200%;
+            border-radius: 50px;
+            animation: borde-veloz 3s linear infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .contenedor-boton-editor:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+        }
+
+        .btn-editor {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #0d1117;
+            color: #00c6ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-editor:hover {
+            background: #00c6ff;
             color: #000;
         }
 
@@ -242,47 +303,6 @@
         
         th a { color: white; text-decoration: none; }
         th a:hover { color: #E1A800; }
-
-        .seccion-spotify {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.btn-spotify {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
-    font-family: 'Exo', sans-serif;
-}
-
-.btn-spotify:hover {
-    background-color: #1ed760;
-    transform: scale(1.05);
-}
-
-.spotify-icon {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-}
-
-/* Contenedor del reproductor */
-#contenedor-reproductor {
-    display: none; /* Totalmente oculto al inicio */
-    width: 90%;
-    max-width: 700px;
-    margin: 20px auto;
-}
     </style>
 </head>
 
@@ -326,7 +346,6 @@
 
 <!-- BOTÓN SPOTIFY (Entre Novedades y Descarga) -->
 <div class="seccion-spotify">
-    <!-- Botón con la apariencia original que pediste -->
     <button class="btn-spotify" id="botonSpotify" onclick="reproducirSpotify()">
         <svg class="spotify-icon" viewBox="0 0 24 24">
             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.494 17.308c-.217.355-.678.468-1.032.252-2.86-1.748-6.46-2.143-10.702-1.176-.405.093-.812-.162-.905-.567-.093-.404.162-.811.566-.905 4.646-1.062 8.624-.616 11.82 1.337.354.217.467.678.253 1.059zm1.464-3.26c-.274.444-.852.585-1.296.312-3.274-2.012-8.266-2.597-12.138-1.422-.5.152-1.026-.132-1.178-.632-.152-.5.132-1.026.633-1.178 4.417-1.34 9.914-.683 13.667 1.624.444.274.585.852.312 1.296zm.126-3.412c-3.928-2.333-10.414-2.55-14.185-1.405-.603.183-1.242-.163-1.425-.766-.183-.603.163-1.242.766-1.425 4.34-1.318 11.5-1.066 16.035 1.625.542.322.72 1.024.398 1.566-.322.542-1.024.72-1.566.398z"/>
@@ -334,7 +353,7 @@
         <span id="textoBoton">ESCUCHA NUESTRO SOUNDTRACK</span>
     </button>
 
-    <div id="contenedor-reproductor" style="display:none; margin-top: 20px;">
+    <div id="contenedor-reproductor">
         <iframe 
             id="spotifyIframe"
             src="" 
@@ -359,6 +378,17 @@
     </div>
 </section>
 
+<!-- NUEVA SECCIÓN: HERRAMIENTAS DE EDITOR -->
+<section class="seccion-editor">
+    <p>¿Quieres ser editor? Aquí te traemos algunas herramientas:</p>
+    <div class="contenedor-boton-editor">
+        <a href="tools.html" class="btn-editor">
+            🛠️ Ver Herramientas de Edición
+        </a>
+    </div>
+</section>
+
+<!-- DONACIÓN -->
 <div class="seccion-donacion" style="text-align: center; margin: 40px 0;">
     <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">☕ Si valoras mi trabajo, puedes apoyarme aquí:</p>
     <div class="contenedor-boton-cafe">
@@ -368,6 +398,7 @@
     </div>
 </div>
 
+<!-- CRÉDITOS -->
 <a href="credits.html" style="text-decoration: none; color: inherit; display: block;">
     <div class="ventana-creditos">
         <p style="text-align: center; color: #E1A800; font-weight: bold; margin: 0; padding: 5px 0; font-size: 0.8rem; position: absolute; width: 100%; z-index: 2; background: rgba(20,20,20,0.9); border-bottom: 1px solid #333;">
@@ -408,24 +439,23 @@
     setInterval(moveSlider, 4000);
     sliderText.textContent = newsTexts[0];
 
-function reproducirSpotify() {
-    const contenedor = document.getElementById('contenedor-reproductor');
-    const iframe = document.getElementById('spotifyIframe');
-    const texto = document.getElementById('textoBoton');
-    
-    // AQUÍ ES DONDE COLOCAS TU LINK
-    const linkEmbed = "https://open.spotify.com/embed/track/4DNDb6OMyORiSisBMhh5op?utm_source=generator"; 
+    function reproducirSpotify() {
+        const contenedor = document.getElementById('contenedor-reproductor');
+        const iframe = document.getElementById('spotifyIframe');
+        const texto = document.getElementById('textoBoton');
+        
+        const linkEmbed = "https://open.spotify.com/embed/track/4DNDb6OMyORiSisBMhh5op?utm_source=generator"; 
 
-    if (contenedor.style.display === 'none') {
-        iframe.src = linkEmbed;
-        contenedor.style.display = 'block';
-        texto.innerText = "CERRAR REPRODUCTOR";
-    } else {
-        contenedor.style.display = 'none';
-        iframe.src = ""; // Esto detiene la música al cerrar
-        texto.innerText = "ESCUCHA NUESTRO SOUNDTRACK";
+        if (contenedor.style.display === 'none' || contenedor.style.display === '') {
+            iframe.src = linkEmbed;
+            contenedor.style.display = 'block';
+            texto.innerText = "CERRAR REPRODUCTOR";
+        } else {
+            contenedor.style.display = 'none';
+            iframe.src = ""; 
+            texto.innerText = "ESCUCHA NUESTRO SOUNDTRACK";
+        }
     }
-}
 </script>
 
 </body>
