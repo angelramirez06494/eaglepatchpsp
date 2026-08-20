@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas de Edición | Eagle Patch</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. ESTILOS GENERALES Y FONDO
+           ========================================= */
+        body {
+            font-family: 'Exo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0c;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('img/background.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(25%) blur(8px);
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* =========================================
+           2. HEADER / ENCABEZADO
+           ========================================= */
+        .btn-volver {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fefefe;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-volver:hover {
+            color: #ffd700;
+            transform: translateX(-5px);
+        }
+
+        .header-titulo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-titulo h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            background: linear-gradient(90deg, #ffcc00, #ffbb00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-titulo p {
+            color: #aaa;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           3. GRID DE HERRAMIENTAS (ESCALABLE)
+           ========================================= */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .tool-card {
+            background: rgba(18, 22, 31, 0.85);
+            border: 1px solid rgba(0, 198, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .tool-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #fff200, #ffbf00);
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 208, 0, 0.6);
+            box-shadow: 0 15px 30px rgba(255, 183, 0, 0.25);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+            height: 6px;
+        }
+
+        /* Contenido de la Card */
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 198, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 1px solid rgba(255, 251, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .tool-title-zone h2 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .tool-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .tool-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .tool-footer {
+            margin-top: auto;
+        }
+
+        /* Botón genérico de descarga */
+        .btn-download-tool {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #009dff, #0091ff);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+        }
+
+        .btn-download-tool:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 198, 255, 0.5);
+        }
+
+        /* Grupo de múltiples botones de descarga */
+        .btn-group-download {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn-group-download .btn-download-tool {
+            flex: 1;
+            padding: 12px 8px;
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        /* =========================================
+           4. SECCIÓN INFO / REQUISITOS
+           ========================================= */
+        .seccion-info {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .seccion-info h3 {
+            margin-top: 0;
+            color: #ffd700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seccion-info ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           5. FOOTER SIMPLE
+           ========================================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Botón Volver -->
+    <a href="index.html" class="btn-volver">
+        ⬅ Volver al Inicio
+    </a>
+
+    <!-- Encabezado -->
+    <header class="header-titulo">
+        <h1>🛠️ Herramientas de Edición</h1>
+        <p>Aquí te dejamos algunas herramientas que pueden ayudarte a editar archivos de Eagle Patch y demás parches de PSP.</p>
+    </header>
+
+    <!-- Grid de Herramientas -->
+    <main class="tools-grid">
+
+        <!-- HERRAMIENTA 1 -->
+        <article class="tool-card">
+            <div>
+                <div class="tool-header">
+                    <div class="tool-icon">🎮</div>
+                    <div class="tool-title-zone">
+                        <h2>Creador de intros para PES2014 PSP</h2>
+                        <span class="tool-tag">v1.0 • Para PC</span>
+                    </div>
+                </div>
+                <p class="tool-desc">
+                    Estas herramientas ayudan a hacer intros de PSP mucho más rápido y fácil que con el método antiguo.
+                </p>
+            </div>
+            <div class="tool-footer">
+                <a href="LINK_DE_DESCARGA_1" target="_blank" class="btn-download-tool">
+                    📥 Descargar Generador de intros
+                </a>
+            </div>
+        </article>
+
+        <!-- HERRAMIENTA 2 (CON DOS OPCIONES DE DESCARGA) -->
+        <article class="tool-card">
+            <div>
+                <div class="tool-header">
+                    <div class="tool-icon">📦</div>
+                    <div class="tool-title-zone">
+                        <h2>PPSSPP Texture Helper</h2>
+                        <span class="tool-tag">Varias Versiones • Para PC</span>
+                    </div>
+                </div>
+                <p class="tool-desc">
+                    Genera automáticamente los códigos para agregar texturas al PES PSP. Elige la versión que prefieras:
+                </p>
+            </div>
+            <div class="tool-footer">
+                <div class="btn-group-download">
+                    <a href="LINKS DE DESCARGA
+
+V1
+https://www.mediafire.com/file/sa4kst247gbn122/PPSSPP_Texture_ini.rar/file
+
+
+V2
+https://www.mediafire.com/file/optk019ke2qoxub/PPSSPP_Texture_Helper.rar/file" target="_blank" class="btn-download-tool">
+                        📥 Versión 1.0
+                    </a>
+                    <a href="LINKS DE DESCARGA
+
+V1
+https://www.mediafire.com/file/sa4kst247gbn122/PPSSPP_Texture_ini.rar/file
+
+
+V2
+https://www.mediafire.com/file/optk019ke2qoxub/PPSSPP_Texture_Helper.rar/file" target="_blank" class="btn-download-tool">
+                        📥 Versión 1.01
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Recomendaciones / Notas para editores -->
+    <section class="seccion-info">
+        <h3>💡 Recomendaciones para Editores</h3>
+        <ul>
+            <li>Haz siempre una **copia de seguridad** de los archivos que vayas a modificar antes de guardar cambios.</li>
+            <li>Si alguna herramienta requiere librerías especiales de Windows, verifica tener actualizado **.NET Framework**.</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    Eagle Patch &copy; 2026 - Herramientas y Recursos de Edición; Las Herramientas Fueron Creadas Y Desarrolladas por YUNIER PB
+</footer>
+
+</body>
+</html>
