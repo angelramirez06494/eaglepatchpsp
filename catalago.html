@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eagle Patch - Catálogo Oficial</title>
-
-        <script>
+    
+    <script>
         (function() {
             var ref = document.referrer;
-            // Si el usuario viene completamente vacío (escribió la URL) o no viene desde tu dominio/index
             if (!ref || (ref.indexOf("theeaglepatch.com") === -1 && ref.indexOf("index.html") === -1)) {
                 window.location.href = "https://theeaglepatch.com/";
             }
         })();
     </script>
-    
+
+    <!-- POPUNDER -->
+    <script data-cfasync="false" src="https://accountut.com/1/fd20108ddf4014c7acbd548996e07810"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           1. ESTILOS GENERALES
-           ========================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -55,9 +54,6 @@
             z-index: 1;
         }
 
-        /* =========================================
-           2. SLIDER: IMAGEN Y FLECHAS
-           ========================================= */
         .slider-wrapper {
             width: 100%;
             display: flex;
@@ -102,9 +98,6 @@
             outline: none;
         }
 
-        /* =========================================
-           3. PANEL DE INFO Y BOTÓN DE DESCARGA
-           ========================================= */
         .info-panel {
             text-align: center;
             background: rgba(0, 0, 0, 0.75);
@@ -130,9 +123,29 @@
             margin-top: 20px;
             transition: all 0.3s ease;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
-        /* AJUSTES PARA CELULAR */
+        .contenedor-publicidad {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(15, 15, 15, 0.6);
+            border: 1px dashed #333;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .contenedor-publicidad span {
+            display: block;
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         @media (max-width: 768px) {
             .slider-wrapper { gap: 10px; }
             .nav-btn { width: 45px; height: 45px; font-size: 1.1rem; }
@@ -141,14 +154,11 @@
         }
     </style>
 </head>
-
-
 <body>
 
     <div id="bg-dinamico"></div>
 
     <div class="main-container">
-        
         <div class="slider-wrapper">
             <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
             
@@ -162,12 +172,23 @@
         <div class="info-panel" id="main-info">
             <h1 id="patch-title">CARGANDO...</h1>
             <p id="patch-desc" style="color: #ccc; margin: 15px 0; line-height: 1.6;"></p>
-            <a href="#" id="patch-link" class="download-btn">DESCARGAR ESTA VERSIÓN</a>
+            <a href="#" id="patch-link" onclick="irConDirectLink(event)" class="download-btn">DESCARGAR ESTA VERSIÓN</a>
         </div>
 
+        <!-- BANNER NATIVO -->
+        <div class="contenedor-publicidad">
+            <span>Publicidad</span>
+            <script async="async" data-cfasync="false" src="https://bellnewyork.org/21/3fd56beca00bc05da24c1c9df1e5d75a"></script>
+            <div id="container-3fd56beca00bc05da24c1c9df1e5d75a"></div>
+        </div>
     </div>
 
+    <!-- BARRA SOCIAL -->
+    <script data-cfasync="false" src="https://bellnewyork.org/14/088823f0b388f5b2fc43b877b189b6d8"></script>
+
     <script>
+        const URL_DIRECTLINK = "https://asiafilm.org/4/c2830980a7224ecf8e0c4c9a2837530b";
+
         const versions = [
             {
                 title: "EAGLE PATCH 2025",
@@ -205,6 +226,13 @@
 
         let currentIdx = 0;
 
+        function irConDirectLink(e) {
+            e.preventDefault();
+            const destino = versions[currentIdx].link;
+            window.open(URL_DIRECTLINK, '_blank');
+            window.location.href = destino;
+        }
+
         function updateUI() {
             const v = versions[currentIdx];
             const img = document.getElementById('main-img');
@@ -222,20 +250,17 @@
                 document.getElementById('patch-desc').innerText = v.desc;
                 btnLink.href = v.link;
 
-                // Colores dinámicos
                 document.getElementById('patch-title').style.color = v.color;
                 frame.style.borderColor = v.color;
                 frame.style.boxShadow = `0 0 30px ${v.color}55`;
                 info.style.borderLeftColor = v.color;
                 
-                // Aplicar comportamiento a todos los botones (Nav + Descarga)
                 const todosLosBotones = [...btnsNav, btnLink];
                 
                 todosLosBotones.forEach(btn => {
                     btn.style.color = v.color;
                     btn.style.borderColor = v.color;
                     
-                    // Efectos de Hover dinámicos mediante JS
                     btn.onmouseenter = function() {
                         this.style.backgroundColor = v.color;
                         this.style.color = "#000";
