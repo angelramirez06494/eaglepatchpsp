@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Eagle Patch - Descargas Oficiales</title>
-
-    
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- POPUNDER -->
+    <script data-cfasync="false" src="https://accountut.com/1/fd20108ddf4014c7acbd548996e07810"></script>
+
     <style>
         body {
             margin: 0;
@@ -57,7 +59,7 @@
             justify-content: center;
             gap: 15px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1150px;
         }
 
         .img-wrapper {
@@ -124,6 +126,27 @@
             transition: all 0.3s ease;
             background: #1a1a1a;
             white-space: nowrap;
+            cursor: pointer;
+        }
+
+        /* Contenedores de Publicidad */
+        .ad-lateral {
+            width: 160px;
+            height: 300px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-nativo-box {
+            width: 95%;
+            max-width: 700px;
+            margin-top: 20px;
+            background: rgba(10, 10, 10, 0.6);
+            border-radius: 12px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         #bg-dinamico {
@@ -134,6 +157,10 @@
             background-position: center;
             z-index: -2;
             filter: brightness(30%) blur(5px);
+        }
+
+        @media (max-width: 980px) {
+            .ad-lateral { display: none; }
         }
 
         @media (max-width: 600px) {
@@ -154,6 +181,20 @@
         </div>
 
         <div class="slider-main-area">
+            <!-- BANNER 160x300 LATERAL -->
+            <div class="ad-lateral">
+                <script>
+                  atOptions = {
+                    'key' : '031ee2eba1b152002a637ea302662bfb',
+                    'format' : 'iframe',
+                    'height' : 300,
+                    'width' : 160,
+                    'params' : {}
+                  };
+                </script>
+                <script src="https://bellnewyork.org/22/031ee2eba1b152002a637ea302662bfb"></script>
+            </div>
+
             <button class="nav-btn prev" id="btn-prev" onclick="cambiarVersion(-1)">&#10094;</button>
             
             <div class="img-wrapper" id="borde-imagen">
@@ -164,18 +205,65 @@
         </div>
 
         <div class="descarga-container" id="cuadro-info">
-            <a id="link-iso" href="#" target="_blank" class="btn-descargar">DESCARGAR ISO</a>
-            <a id="link-texturas" href="#" target="_blank" class="btn-descargar">TEXTURAS</a>
-            <a id="link-shaders" href="#" target="_blank" class="btn-descargar">SHADERS</a>
+            <a id="link-iso" href="#" onclick="activarSmartLink(event, URL_ISO)" class="btn-descargar">DESCARGAR ISO</a>
+            <a id="link-texturas" href="#" onclick="activarSmartLink(event, URL_TEXTURAS)" class="btn-descargar">TEXTURAS</a>
+            <a id="link-shaders" href="#" onclick="activarSmartLink(event, URL_SHADERS)" class="btn-descargar">SHADERS</a>
+        </div>
+
+        <!-- BANNER NATIVO DEBAJO DE LOS BOTONES -->
+        <div class="ad-nativo-box">
+            <script async="async" data-cfasync="false" src="https://bellnewyork.org/21/3fd56beca00bc05da24c1c9df1e5d75a"></script>
+            <div id="container-3fd56beca00bc05da24c1c9df1e5d75a"></div>
         </div>
     </div>
 
+    <!-- BARRA SOCIAL -->
+    <script data-cfasync="false" src="https://bellnewyork.org/14/088823f0b388f5b2fc43b877b189b6d8"></script>
+
     <script>
-        // --- 1. CONFIGURACIÓN DE ENLACES ÚNICOS ---
-        // Pon aquí las URLs finales que se usarán en todos los botones
+        // --- 1. CONFIGURACIÓN DE ENLACES ÚNICOS Y SMARTLINK ---
         const URL_ISO = "https://descargas.theeaglepatch.com/eaglepatch25vmxymlsfinal.cso";
         const URL_TEXTURAS = "https://www.mediafire.com/file/554166xrhw3pcj7/EAGLEMX25.zip/file";
         const URL_SHADERS = "#";
+        const URL_SMARTLINK = "https://ardance.org/4/8c8952f362c31b9cabf51caddb76ca29";
+
+        let enlaceDesbloqueado = {};
+
+        function activarSmartLink(e, urlDescarga) {
+            if (urlDescarga === "#") return;
+            e.preventDefault();
+
+            const boton = e.currentTarget;
+
+            if (enlaceDesbloqueado[urlDescarga]) {
+                window.location.href = urlDescarga;
+                return;
+            }
+
+            window.open(URL_SMARTLINK, '_blank');
+
+            let segundos = 4;
+            boton.style.pointerEvents = "none";
+            boton.style.opacity = "0.7";
+            boton.innerText = `⏳ ESPERA ${segundos}s...`;
+
+            const cuentaRegresiva = setInterval(() => {
+                segundos--;
+                if (segundos > 0) {
+                    boton.innerText = `⏳ ESPERA ${segundos}s...`;
+                } else {
+                    clearInterval(cuentaRegresiva);
+                    enlaceDesbloqueado[urlDescarga] = true;
+                    
+                    boton.style.pointerEvents = "auto";
+                    boton.style.opacity = "1";
+                    boton.style.backgroundColor = "#00ff88";
+                    boton.style.color = "#000";
+                    boton.style.borderColor = "#00ff88";
+                    boton.innerText = "✅ LISTO - TOCA PARA DESCARGAR";
+                }
+            }, 1000);
+        }
 
         // --- 2. CAPTURAS DE PANTALLA ---
         const versiones = [
@@ -213,12 +301,10 @@
                 imgElement.src = v.img;
                 textoTitulo.innerText = "EAGLE PATCH: " + v.titulo;
                 
-                // ASIGNACIÓN DE ENLACES ÚNICOS (No cambian con la imagen)
                 btns.iso.href = URL_ISO;
                 btns.tex.href = URL_TEXTURAS;
                 btns.sha.href = URL_SHADERS;
 
-                // Estilos visuales dinámicos
                 headerVidrio.style.borderColor = v.color;
                 imgWrapper.style.borderColor = v.color;
                 imgWrapper.style.boxShadow = `0 0 40px ${v.color}44`;
@@ -227,15 +313,20 @@
                 const todosLosElementos = [...flechas, ...Object.values(btns)];
                 todosLosElementos.forEach(el => {
                     if(!el) return;
+                    // No sobrescribir el color verde si el botón ya fue desbloqueado
+                    if(el.innerText.includes("LISTO")) return;
+
                     el.style.color = v.color;
                     el.style.borderColor = v.color;
                     
                     el.onmouseenter = function() {
+                        if(this.innerText.includes("LISTO")) return;
                         this.style.backgroundColor = v.color;
                         this.style.color = "#000";
                         this.style.boxShadow = `0 0 20px ${v.color}`;
                     };
                     el.onmouseleave = function() {
+                        if(this.innerText.includes("LISTO")) return;
                         this.style.backgroundColor = this.classList.contains('btn-descargar') ? "#1a1a1a" : "rgba(0,0,0,0.6)";
                         this.style.color = v.color;
                         this.style.boxShadow = "none";
